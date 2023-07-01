@@ -1,0 +1,44 @@
+﻿@model Projekt_MVC.Models.Message
+
+<h4>Message</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Message_add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="name">Domownik</label>
+                <input class="form-control" type="text" id="name" name="name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Messag" class="control-label"></label>
+                <textarea id="messageTextarea" class="form-control" name="Messag" rows="3" placeholder="Wprowadź wiadomość"></textarea>
+                <span asp-validation-for="Messag" class="text-danger"></span>
+            </div>
+
+            <script>
+                var messageTextarea = document.getElementById('messageTextarea');
+                var isMessageModified = false;
+
+                messageTextarea.addEventListener('input', function () {
+                    if (!isMessageModified) {
+                        var currentDateTime = new Date().toISOString().slice(0, 19).replace('T', ' ');
+                        var messageValue = messageTextarea.value.trim();
+                        if (messageValue !== '') {
+                            messageTextarea.value = currentDateTime + ' ' + messageValue;
+                            isMessageModified = true;
+                        }
+                    }
+                });
+            </script>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

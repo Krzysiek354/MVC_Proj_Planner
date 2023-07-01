@@ -1,0 +1,33 @@
+﻿@model Projekt_MVC.Models.School
+
+<h4>School</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="School_add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="name">Domownik</label>
+                <input class="form-control" type="text" id="name" name="name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Homework" class="control-label"></label>
+                <input asp-for="Homework" class="form-control" />
+                <span asp-validation-for="Homework" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="When" class="control-label"></label>
+                <input asp-for="When" class="form-control" />
+                <span asp-validation-for="When" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

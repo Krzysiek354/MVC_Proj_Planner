@@ -1,0 +1,170 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row">
+    <div class="text-center">
+        <h1 class="display-4">Nasze Plany</h1>
+    </div>
+</div>
+
+<br></br>
+<br />
+
+<div class="row">
+    <div class="col-md-1">
+        <div class="row">
+           
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">MENU</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="@Url.Action("Work_Add", "Home")">Praca</a>
+                    <a class="dropdown-item" href="@Url.Action("School_Add", "Home")">Szkoła zadania</a>
+                    <a class="dropdown-item" href="@Url.Action("Enjoy_Add", "Home")">Rozrywka pomysł</a>
+                    <a class="dropdown-item" href="@Url.Action("Shop_Add", "Home")">Zakupy</a>
+                    <a class="dropdown-item" href="@Url.Action("Work_Add", "Home")">Praca</a>
+                    <a class="dropdown-item" href="@Url.Action("Message_Add", "Home")">Wiadomość</a>
+                    <a class="dropdown-item" href="@Url.Action("Person_Add","Home")">Dodaj domownika</a>
+                    <a class="dropdown-item" href="@Url.Action("Housers", "Home")">Usuń domownika</a>
+                    <div class="dropdown-divider"></div>
+                </div>
+            </li>
+        </div>
+    </div>
+    <br />
+    <div class="col-md-11">
+        <div class="row">
+            <br />
+            <div class="text-center">
+                <h2>Zadania Szkola</h2>
+            </div>
+
+            <div id="school" class="row">
+                @foreach (var item in ViewBag.data)
+                {
+
+                    <div class="col-md-4">
+                        <div class="card border-danger mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Dzieciak: @item.Person.Name</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Cel: @item.School.Homework</h4>
+                                <p class="card-text">Na kiedy: @item.School.When</p>
+                                <form action="@Url.Action("School_Delete", "Home", new School{ Id = item.School.Id })" method="post">
+                                    <button type="submit" class="btn-close"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+
+            <br>
+
+            
+            <div class="text-center">
+                <h2>Pomysl na rozrywke</h2>
+            </div>
+
+            <div id="enter" class="row">
+                @foreach (var item in ViewBag.data1)
+                {
+
+                    <div class="col-md-4">
+                        <div class="card border-primary mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Pomysl osoby: @item.Person.Name</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Pomysl: @item.Enjoy.Idea</h4>
+                                <p class="card-text">Kiedy: @item.Enjoy.When</p>
+                                <form action="@Url.Action("Enjoy_Delete", "Home", new Enjoy{ Id = item.Enjoy.Id })" method="post">
+                                    <button type="submit" class="btn-close"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+
+
+            <div class="text-center">
+                <h2>Zakupy</h2>
+            </div>
+
+            <div id="shop" class="row">
+                @foreach (var item in ViewBag.data2)
+                {
+
+                    <div class="col-md-4">
+                        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Dla: @item.Person.Name</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Co: @item.Shop.Thing</h4>
+                                <p class="card-text">Ilośc:@item.Shop.Count</p>
+                                <form id="form_shop" action="@Url.Action("Shop_Delete", "Home", new Shop{ Id = item.Shop.Id })" method="post">
+                                    <button type="submit" class="btn-close"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+
+
+            <div class="text-center">
+                <h2>Praca</h2>
+            </div>
+
+            <div id="work" class="row">
+                @foreach (var item in ViewBag.data3)
+                {
+
+                    <div class="col-md-4">
+                        <div class="card border-success mb-3" style="max-width: 20rem;">
+                            <div class="card-header">Dla: @item.Person.Name</div>
+                            <div class="card-body">
+                                <h4 class="card-title">Zadanie: @item.Work.Task</h4>
+                                <p class="card-text">Na kiedy:@item.Work.When</p>
+                                <form action="@Url.Action("Work_Delete", "Home", new Work{ Id = item.Work.Id })" method="post">
+                                    <button type="submit" class="btn-close"></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+            </div>
+            <br />
+
+
+
+            <div class="text-center">
+                <h2>Wiadomości</h2>
+            </div>
+
+            <div id="message" class="row">
+                @foreach (var item in ViewBag.data4)
+                {
+
+                    <div class="alert alert-dismissible alert-light">
+                        <h4 class="alert-heading">@item.Message.Messag</h4>
+                        <p class="mb-0">Od: @item.Person.Name</p>
+                        <form action="@Url.Action("Message_Delete", "Home", new Message{ Id = item.Message.Id })" method="post">
+                            <button type="submit" class="btn-close"></button>
+                        </form>
+                    </div>
+
+
+                }
+                <br />
+            </div>
+            <br />
+            <br />
+
+        </div>
+    </div>
+</div>

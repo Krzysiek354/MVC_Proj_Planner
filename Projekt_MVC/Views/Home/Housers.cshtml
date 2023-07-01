@@ -1,0 +1,19 @@
+﻿
+<h2>Domownicy</h2>
+
+<div id="person" class="row">
+    @{
+        foreach (var item in ViewBag.pers)
+        {
+
+            <div class="col-md-4">
+                <div class="card border-warning mb-3" style="max-width: 20rem;">
+                    <div class="card-header">Domownik: @item.Name</div>
+                    <form action="@Url.Action("Person_Delete", "Home", new Person{ Id = item.Id })" method="post">
+                        <button type="submit" class="btn-close"></button>
+                    </form>
+                </div>
+            </div>
+        }
+    }
+</div>
